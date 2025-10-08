@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihar Mahajan | Portfolio</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* --- Base Styles & Theme --- */
+        :root {
+            --bg-color: #f8f9fa; /* Off-white */
+            --text-color-primary: #212529; /* Dark gray for text */
+            --text-color-secondary: #989797; /* Lighter gray for subtitles */
+            --accent-color: #007bff; /* A classic, clean blue */
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+        .navbar-brand {
+            color: var(--text-color-primary) !important;
+        }
+        .nav-link {
+            color: var(--text-color-secondary) !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- Hero Section --- */
+        #home h1 {
+            font-size: 3.5rem;
+        }
+        #home p {
+            font-size: 1.25rem;
+            color: var(--text-color-secondary);
+        }
+        #home .display-name {
+            color: var(--accent-color);
+        }
+        #typing-text {
+            min-height: 40px; /* Prevent layout shift */
+        }
+
+        /* --- Buttons --- */
+        .btn-custom {
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-custom:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+        .btn-custom-outline {
+            border: 2px solid var(--border-color);
+            color: var(--bg-color);
+        }
+        .btn-custom-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background-color: transparent;
+        }
+
+        /* --- Card Styles --- */
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        .card-body {
+            padding: 30px;
+        }
+        
+        /* --- Project Cards --- */
+        .project-card .tag {
+            background-color: #e9ecef;
+            color: var(--text-color-secondary);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* --- Skills Section --- */
+        .skill-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .skill-item i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        .skill-item:hover {
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        /* --- Contact Form --- */
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 12px;
+        }
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px 0;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .social-icons a {
+            color: var(--text-color-secondary);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Animation on Scroll --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Nihar Mahajan</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <p class="mb-2 fs-5">Hello, my name is</p>
+                    <h1 class="display-name mb-3">Nihar Mahajan</h1>
+                    <p id="typing-text" class="fs-4 text-secondary"></p>
+                    <div class="mt-4">
+                         <a href="#contact" class="btn btn-custom">Get in Touch</a>
+                         <a href="#projects" class="btn btn-custom btn-custom-outline ms-2 --text-color-primary">View My Work</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="row align-items-center mt-5">
+                <div class="col-lg-4 text-center fade-in">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEJDeLXcwOnfw/profile-displayphoto-shrink_400_400/B4DZb5gBUyGgAg-/0/1747942643651?e=1762992000&v=beta&t=LjIU0JRVcFMTSvQowwKoAMwP6FISfpfe-8B45rCvXlM" class="img-fluid rounded-circle" alt="Your Name">
+                </div>
+                <div class="col-lg-8 mt-4 mt-lg-0 fade-in">
+                    <p class="fs-5">I'm a developer and innovator with a passion for building elegant, efficient solutions for the web. For me, programming isn't just about writing code; it's about architecting a robust digital experience from the ground up.</p>
+                    <p class="text-secondary">My comfort zone is the entire tech stack. I build secure and scalable backends using Python, Flask, and MySQL, deployed on powerful cloud infrastructure like AWS with a Linux foundation. On the frontend, I use HTML, CSS, JavaScript, and Bootstrap to create clean, responsive user interfaces that are a pleasure to use. I also enjoy diving deep into fundamentals with languages like C.
+
+When I'm not bringing ideas to life with code, you can find me analyzing a football match or exploring new worlds in a video game. I'm currently based in Delhi, always open to new challenges and collaborations.
+
+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section bg-white">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">My Work</h2>
+            </div>
+            <div class="row mt-5 g-4">
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card project-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Chef Ai</h3>
+                            <p class="card-text text-secondary">AI-powered recipe generator built with Python, Flask, and the Google Gemini API. 🍳</p>
+                            <div class="mb-3">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">Bootstrap</span>
+                            </div>
+                            <a href="https://niharrr.pythonanywhere.com/" class="btn btn-sm btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card project-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Lumen Ai</h3>
+                            <p class="card-text text-secondary">A brief but clear description of the project, its purpose, and the value it provides.</p>
+                            <div class="mb-3">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                            <a href="/Users/niharmahajan/lumen/lumen/venv/templates/index.html" class="btn btn-sm btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card project-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Slot Ai</h3>
+                            <p class="card-text text-secondary">An AI-powered wellness planner built with Python, Flask, and the Google Gemini API to generate personalized fitness and diet plans. 🌿</p>
+                            <div class="mb-3">
+                                <span class="tag">HTML/CSS</span>
+                                <span class="tag">Bootstrap</span>
+                                <span class="tag">Flask</span>
+                            </div>
+                            <a href="https://nihar.pythonanywhere.com/" class="btn btn-sm btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">My Toolbox</h2>
+            </div>
+            <div class="row mt-5 g-4 text-center">
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fab fa-python"></i><h5>Python & Flask</h5></div></div>
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fab fa-js-square"></i><h5>JavaScript</h5></div></div>
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fab fa-html5"></i><h5>HTML5</h5></div></div>
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fab fa-css3-alt"></i><h5>CSS3</h5></div></div>
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fab fa-bootstrap"></i><h5>Bootstrap</h5></div></div>
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fab fa-react"></i><h5>React</h5></div></div>
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fas fa-database"></i><h5>MySQL</h5></div></div>
+                <div class="col-md-3 col-6 fade-in"><div class="skill-item"><i class="fab fa-git-alt"></i><h5>Git Version Control</h5></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section bg-white">
+        <div class="container">
+            <div class="text-center fade-in">
+                <h2 class="section-title">Contact Me</h2>
+                 <p class="text-secondary mt-3">Have a question or want to work together? Leave a message!</p>
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8 fade-in">
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="text-center">
+                           <button type="submit" class="btn btn-custom">Send Message</button>
+                        </div>
+                    </form>
+                    <div id="form-message" class="text-center mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-icons mb-3">
+                <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="text-secondary mb-0">&copy; 2025 Nihar Mahajan. Crafted with care.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Navbar Active Link Changer & Shrink on Scroll ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navbar = document.querySelector('.navbar');
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', () => {
+                updateActiveLink();
+            });
+
+            // --- Typing Text Effect ---
+            const typingText = document.getElementById('typing-text');
+            if(typingText) {
+                const phrases = ["Full-Stack Developer", "Creative Problem Solver", "UI/UX Enthusiast"];
+                let phraseIndex = 0;
+                let letterIndex = 0;
+                let currentPhrase = "";
+                let isDeleting = false;
+
+                function type() {
+                    const fullPhrase = phrases[phraseIndex];
+                    if (isDeleting) {
+                        currentPhrase = fullPhrase.substring(0, currentPhrase.length - 1);
+                    } else {
+                        currentPhrase = fullPhrase.substring(0, currentPhrase.length + 1);
+                    }
+
+                    typingText.textContent = currentPhrase;
+                    let typeSpeed = 120;
+
+                    if (isDeleting) {
+                        typeSpeed /= 2;
+                    }
+
+                    if (!isDeleting && currentPhrase === fullPhrase) {
+                        typeSpeed = 2000;
+                        isDeleting = true;
+                    } else if (isDeleting && currentPhrase === "") {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                    }
+                    
+                    setTimeout(type, typeSpeed);
+                }
+                type();
+            }
+
+            // --- Fade-in on Scroll Animation ---
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // --- Contact Form Submission ---
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('form-message');
+
+            if(contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData.entries());
+
+                    formMessage.textContent = 'Sending...';
+                    formMessage.style.color = 'var(--text-color-secondary)';
+                    
+                    fetch('/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.status === 'success') {
+                            formMessage.textContent = result.message;
+                            formMessage.style.color = 'green';
+                            contactForm.reset();
+                        } else {
+                            formMessage.textContent = 'Error: ' + result.message;
+                            formMessage.style.color = 'red';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        formMessage.textContent = 'An unexpected error occurred.';
+                        formMessage.style.color = 'red';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
